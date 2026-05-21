@@ -2,5 +2,12 @@
 
 from src.training.config import TrainingConfig
 from src.training.reward import StepRewardModel, compute_gae
+from src.training.ppo_trainer import PPOUpdate, AgentPPOTrainer
 
-__all__ = ["TrainingConfig", "StepRewardModel", "compute_gae"]
+__all__ = [
+    "TrainingConfig",
+    "StepRewardModel",
+    "compute_gae",
+    "PPOUpdate",
+    "AgentPPOTrainer",
+]
