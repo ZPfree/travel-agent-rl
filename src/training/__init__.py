@@ -4,6 +4,7 @@ from src.training.config import TrainingConfig
 from src.training.reward import StepRewardModel, compute_gae
 from src.training.ppo_trainer import PPOUpdate, AgentPPOTrainer
 from src.training.dpo_trainer import DPOTrainer, PreferencePair
+from src.training.curriculum import DEFAULT_STAGES, CurriculumManager
 
 __all__ = [
     "TrainingConfig",
@@ -13,4 +14,6 @@ __all__ = [
     "AgentPPOTrainer",
     "DPOTrainer",
     "PreferencePair",
+    "DEFAULT_STAGES",
+    "CurriculumManager",
 ]
