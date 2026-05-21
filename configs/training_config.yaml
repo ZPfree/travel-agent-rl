@@ -1,0 +1,33 @@
+model:
+  name: "Qwen/Qwen3-0.6B"
+  max_length: 32768
+
+ppo:
+  learning_rate: 1e-5
+  batch_size: 16
+  mini_batch_size: 4
+  epochs: 4
+  gamma: 0.99
+  lam: 0.95
+
+dpo:
+  learning_rate: 5e-6
+  batch_size: 8
+  max_length: 32768
+  beta: 0.1
+
+agent:
+  max_steps: 50
+  context_limit: 20000
+  tool_result_limit: 200
+
+curriculum:
+  stages:
+    - name: "short"
+      max_steps: 10
+    - name: "medium"
+      max_steps: 20
+    - name: "long"
+      max_steps: 35
+    - name: "full"
+      max_steps: 50

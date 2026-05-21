@@ -1,0 +1,33 @@
+tool_registry:
+  search_flights:
+    description: "Search for available flights between two cities"
+    parameters:
+      origin: { type: "string", required: true }
+      destination: { type: "string", required: true }
+      date: { type: "string", required: true }
+      passengers: { type: "integer", default: 1 }
+
+  search_hotels:
+    description: "Search for available hotels in a city"
+    parameters:
+      city: { type: "string", required: true }
+      check_in: { type: "string", required: true }
+      check_out: { type: "string", required: true }
+      guests: { type: "integer", default: 1 }
+
+  get_weather:
+    description: "Get weather forecast for a city"
+    parameters:
+      city: { type: "string", required: true }
+      date: { type: "string", required: true }
+
+  search_activities:
+    description: "Search for activities and attractions in a city"
+    parameters:
+      city: { type: "string", required: true }
+      category: { type: "string", default: "all" }
+
+  calculate_budget:
+    description: "Calculate total travel budget"
+    parameters:
+      items: { type: "array", required: true }
