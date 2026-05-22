@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(python -m pytest tests/test_agent/test_runner.py -v --tb=short)",
+      "Bash(E:/travel-agent-rl/.venv/Scripts/python.exe -m pytest tests/test_agent/test_runner.py -v --tb=short)",
+      "Bash(/c/Users/83975/anaconda3/envs/wq/python.exe -m pytest tests/test_agent/test_runner.py -v --tb=short)",
+      "Bash(/c/Users/83975/anaconda3/envs/wq/python.exe -m pytest tests/ -v --tb=short)",
+      "Bash(python -m pytest tests/test_agent/test_runner.py -x -q)",
+      "Bash(python -m pytest tests/ -v --tb=short)"
+    ]
+  }
+}

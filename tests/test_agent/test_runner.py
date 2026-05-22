@@ -12,7 +12,7 @@ Tests:
 import pytest
 from unittest.mock import patch, MagicMock
 
-from agent.runner import StepData, Episode, AgentRunner
+from src.agent.runner import StepData, Episode, AgentRunner
 from tools.base import ToolResult
 from agent.state import ProgressTracker
 

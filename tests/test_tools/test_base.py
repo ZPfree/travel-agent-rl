@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from tools.base import BaseTool, ToolResult, ToolRetryPolicy
+from src.tools.base import BaseTool, ToolResult, ToolRetryPolicy
 
 
 # ── ToolResult ────────────────────────────────────────────────────────────

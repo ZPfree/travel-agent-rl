@@ -7,7 +7,7 @@ max_length is set to 32768 to handle 50-step episodes.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 

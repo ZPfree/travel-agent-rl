@@ -6,7 +6,7 @@ required nodes and correct routing logic for the Long Horizon workflow.
 
 import pytest
 
-from agent.graph import (
+from src.agent.graph import (
     create_travel_agent,
     analyze_node,
     think_node,

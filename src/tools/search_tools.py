@@ -93,7 +93,7 @@ class TavilySearch(BaseTool):
             for items in MOCK_SEARCH_RESULTS.values():
                 results.extend(items)
 
-        confidence = 0.85 if search_depth == "advanced" else 0.85
+        confidence = 0.85 if search_depth == "advanced" else 0.7
 
         return ToolResult(
             success=True,

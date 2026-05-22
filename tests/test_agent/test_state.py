@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from agent.state import Constraint, ToolCall, ProgressTracker, TravelState
+from src.agent.state import Constraint, ToolCall, ProgressTracker, TravelState
 
 
 # ── Constraint TypedDict ─────────────────────────────────────────────────

@@ -2,8 +2,8 @@
 
 import pytest
 
-from tools.base import ToolResult
-from tools.registry import ToolRegistry
+from src.tools.base import ToolResult
+from src.tools.registry import ToolRegistry
 
 
 class TestToolRegistry:
@@ -93,7 +93,14 @@ class TestToolRegistry:
         )
         assert result.success is True
         assert isinstance(result.data, list)
-        assert result.confidence == 0.85
+        assert result.confidence == 0.7  # basic depth
+
+    def test_tavily_search_advanced(self):
+        result = self.registry.execute(
+            "tavily_search", query="北京故宫门票", search_depth="advanced"
+        )
+        assert result.success is True
+        assert result.confidence == 0.85  # advanced depth
 
     def test_calendar_query(self):
         result = self.registry.execute(

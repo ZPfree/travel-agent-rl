@@ -11,7 +11,7 @@ start data collection, or can accept a model to generate actions.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 from src.tools.registry import ToolRegistry
@@ -19,7 +19,8 @@ from src.tools.base import ToolResult
 from src.agent.prompt import build_system_prompt, build_step_prompt
 from src.agent.parser import parse_react_output
 from src.agent.context import ContextCompressor
-from src.agent.state import ProgressTracker
+from src.agent.loop_detector import LoopDetector
+from src.agent.state import ProgressTracker, ToolCall
 
 
 # ── Dataclasses ───────────────────────────────────────────────────────────
@@ -87,6 +88,7 @@ class AgentRunner:
         self.context_limit = context_limit
         self.registry = ToolRegistry()
         self.compressor = ContextCompressor(token_limit=context_limit)
+        self.loop_detector = LoopDetector()
 
     # ── public API ────────────────────────────────────────────────────────
 
@@ -110,6 +112,7 @@ class AgentRunner:
         tracker = ProgressTracker()
         messages: list[dict[str, Any]] = []
         steps: list[StepData] = []
+        tool_calls: list[ToolCall] = []
         is_complete = False
 
         # Format tool descriptions and constraints for the system prompt
@@ -209,6 +212,24 @@ class AgentRunner:
 
             # Update tracker
             self._update_tracker(tracker, action_name, action_input, result)
+
+            # Track tool calls for loop detection
+            tool_call: ToolCall = {
+                "tool_name": action_name,
+                "parameters": action_input,
+                "result": result.data if result.success else None,
+                "step": step_idx,
+            }
+            tool_calls.append(tool_call)
+
+            # Check for loops
+            if self.loop_detector.detect_loop(tool_calls):
+                strategy = self.loop_detector.get_break_strategy(action_name)
+                # Apply loop break: inject a hint into the next prompt
+                messages.append({
+                    "role": "system",
+                    "content": f"检测到重复调用，建议切换到 {strategy['new_tool']}（{strategy['reason']}）",
+                })
 
             # Record step
             step_data = StepData(

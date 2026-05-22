@@ -33,4 +33,4 @@ class TrainingConfig:
     gamma: float = 0.99
     lam: float = 0.95
     max_steps: int = 50
-    context_limit: int = 16000
+    context_limit: int = 20000

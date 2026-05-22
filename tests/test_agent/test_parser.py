@@ -8,7 +8,7 @@ Tests parse_react_output with three scenarios:
 
 import pytest
 
-from agent.parser import parse_react_output
+from src.agent.parser import parse_react_output
 
 
 class TestParseThoughtAndAction:
