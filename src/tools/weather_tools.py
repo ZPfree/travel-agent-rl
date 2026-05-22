@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from data.mock_data import MOCK_WEATHER
-from tools.base import BaseTool, ToolResult
+from src.data.mock_data import MOCK_WEATHER
+from src.tools.base import BaseTool, ToolResult
 
 
 class WeatherQuery(BaseTool):

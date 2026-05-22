@@ -17,7 +17,7 @@ from typing import Any
 
 from langgraph.graph import END, StateGraph
 
-from agent.state import TravelState
+from src.agent.state import TravelState
 
 
 # ── Node functions ───────────────────────────────────────────────────────

@@ -1,33 +1,50 @@
 tool_registry:
-  search_flights:
-    description: "Search for available flights between two cities"
+  amap_poi_search:
+    description: "搜索城市中的兴趣点(POI)"
+    parameters:
+      keyword: { type: "string", required: true }
+      city: { type: "string", required: true }
+      type: { type: "string", default: "" }
+
+  amap_nearby_search:
+    description: "搜索指定位置周边的POI"
+    parameters:
+      location: { type: "string", required: true }
+      radius: { type: "integer", default: 1000 }
+      type: { type: "string", default: "" }
+
+  amap_route_plan:
+    description: "规划两个地点之间的路线"
     parameters:
       origin: { type: "string", required: true }
       destination: { type: "string", required: true }
+      mode: { type: "string", default: "driving" }
+
+  amap_geo_code:
+    description: "将地址转换为经纬度坐标"
+    parameters:
+      address: { type: "string", required: true }
+
+  google_search:
+    description: "Google搜索"
+    parameters:
+      query: { type: "string", required: true }
+      num: { type: "integer", default: 5 }
+
+  tavily_search:
+    description: "Tavily深度搜索"
+    parameters:
+      query: { type: "string", required: true }
+      search_depth: { type: "string", default: "basic" }
+
+  weather_query:
+    description: "查询指定城市和日期的天气"
+    parameters:
+      city: { type: "string", required: true }
       date: { type: "string", required: true }
-      passengers: { type: "integer", default: 1 }
 
-  search_hotels:
-    description: "Search for available hotels in a city"
+  calendar_query:
+    description: "查询指定日期的日程"
     parameters:
-      city: { type: "string", required: true }
-      check_in: { type: "string", required: true }
-      check_out: { type: "string", required: true }
-      guests: { type: "integer", default: 1 }
-
-  get_weather:
-    description: "Get weather forecast for a city"
-    parameters:
-      city: { type: "string", required: true }
       date: { type: "string", required: true }
-
-  search_activities:
-    description: "Search for activities and attractions in a city"
-    parameters:
-      city: { type: "string", required: true }
-      category: { type: "string", default: "all" }
-
-  calculate_budget:
-    description: "Calculate total travel budget"
-    parameters:
-      items: { type: "array", required: true }
+      user_id: { type: "string", default: "user_001" }
